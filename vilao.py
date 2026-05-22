@@ -1,4 +1,4 @@
-from personagem import Personagem  # Importa a classe Personagem
+from entidades.personagem import Personagem  # Importa a classe Personagem
 
 class Vilao(Personagem):
     """
