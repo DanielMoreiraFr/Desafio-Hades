@@ -1,4 +1,6 @@
-class Personagem:
+from abc import ABC, abstractmethod
+
+class Personagem(ABC):
     """
     A classe Personagem representa um personagem genérico em um jogo.
     """
