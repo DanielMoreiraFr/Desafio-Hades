@@ -1,4 +1,4 @@
-from entidades.personagem import Personagem
+from entidades.character import Personagem
 from vilao import Vilao
 
 def main():

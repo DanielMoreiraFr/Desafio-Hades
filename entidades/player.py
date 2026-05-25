@@ -1,4 +1,4 @@
-from .personagem import Personagem
+from .character import Personagem
 
 class Zagreus(Personagem):
     pass
