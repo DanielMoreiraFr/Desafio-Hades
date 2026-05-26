@@ -36,3 +36,7 @@ GODS = {
         'legendary': ['Winter Harvest'],
     },
 }
+
+RARITY_POWER = {"Common": 10, "Rare": 20, "Epic": 40, "Legendary": 100}
+RARITY_COLOR = {"Common": "white", "Rare": "blue", "Epic": "magenta", "Legendary": "yellow"}
+RARITY_ICON  = {"Common": "⚪", "Rare": "🔵", "Epic": "🟣", "Legendary": "🌟"}
