@@ -1,18 +1,15 @@
 import random
-from CONFIG import GODS, RARITY_POWER, RARITY_ICON, RARITY_COLOR
+from CONFIG import GODS, RARITY_POWER
 
 class Boon:
-    def __init__(self, name: str, rarity: str, god: str):
+    def __init__(self, name: str, rarity: str, god: str) -> None:
         self.name = name
         self.rarity = rarity
         self.god = god
         self.power = RARITY_POWER[rarity]
-        self.icon = RARITY_ICON[rarity]
 
-    def __str__(self):
-        color = RARITY_COLOR[self.rarity]
-        icon = RARITY_ICON[self.rarity]
-        return f'[{color}]{icon} [{self.rarity}]: {self.name}[/]'
+    def __repr__(self) -> str:
+        return f"Boon({self.name!r}, {self.rarity!r}, {self.god!r})"
     
     def roll_rarity() -> str:
         """Rolls a random rarity based on predefined probabilities:
@@ -38,7 +35,9 @@ class Boon:
         """First-room boon: Choice between Common or Rare"""
         return random.choice(['Common', 'Rare'])
     
-    def produce_boon(god: str, rarity: str) -> Boon:
+# boon generation methods -----
+
+    def make_boon(god: str, rarity: str) -> Boon:
         """Produces a boon based on the given god and rarity.
         
         Args:
@@ -54,7 +53,17 @@ class Boon:
         
         Returns:
             Boon: The generated starting boon."""
-        god = random.choice(list(GODS.keys))
-        return Boon.produce_boon(god, Boon.initial_roll_rarity())
+        god = random.choice(list(GODS))
+        return Boon.make_boon(god, Boon.initial_roll_rarity())
     
-    
+    def generate_boon_options(count: int = 3) -> tuple[str, list[Boon]]:
+        """Generates a set of boon options for the player to choose from after a victory.
+        
+        Args:
+            count (int, optional): The number of boon options to generate. Defaults to 3.
+        Returns:
+            tuple[str, list[Boon]]: A tuple containing the name of the god providing the boons and a list of the generated boon options.
+        """
+        god = random.choice(list(GODS))
+        boons = [Boon.make_boon(god, Boon.roll_rarity()) for _ in range(count)]
+        return god, boons

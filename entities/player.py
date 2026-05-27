@@ -1,5 +1,6 @@
 from .character import Character
 from random import randint, random
+from config import RARITY_POWER
 
 SPECIAL_COOLDOWN = 15
 
@@ -56,12 +57,12 @@ class Player(Character):
     
 # player boons management --
 
-    def add_boon(self, boon: 'Boon') -> None:
+    def add_boon(self, boon) -> None:
         """
         Adds a boon to the player's inventory and updates power and legendary status if necessary
         """
         self.boons.append(boon)
-        self.power += boon.power_bonus
+        self.power += boon.power
         if boon.rarity == 'Legendary':
             self.has_legendary = True
             self.cooldown = SPECIAL_COOLDOWN
