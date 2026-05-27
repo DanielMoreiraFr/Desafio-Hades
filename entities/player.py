@@ -1,6 +1,5 @@
 from .character import Character
 from random import randint, random
-from config import RARITY_POWER
 
 SPECIAL_COOLDOWN = 15
 

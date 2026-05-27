@@ -57,3 +57,13 @@ RARITY_ICON  = {
     "Epic":      "🟣", 
     "Legendary": "🌟",
 }
+
+ENEMY_NAMES = [
+    "Shielded Ruffian", "Lout", "Skull-crusher", "Voidstone", "Wringer",
+    "Errant Blade", "Satyr Sentry", "Infernal Arm", "Dracon", "Venomous Maw",
+    "Tormented Soul", "Demonfire", "Blade Witch", "Frenzy", "Vile Skelly",
+]
+BOSS_NAMES = [
+    "Megaera, the Fury", "Alecto, the Fury", "Tisiphone, the Fury",
+    "Bone Hydra", "Lernaean Bone Hydra",
+]
