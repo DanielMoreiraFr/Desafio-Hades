@@ -114,8 +114,8 @@ hades/
 │   ├── player.py        # Boons, dodge, block, special attack + cooldown
 │   └── enemy.py         # Direct attacker, nothing else
 │
-├── logic/               # Game rules — no Rich, no display code
-│   ├── boon.py          # Boon class, rarity rolls, factories
+├── systems/               # Game rules — no Rich, no display code
+│   ├── boons.py          # Boon class, rarity rolls, factories
 │   ├── combat.py        # Spawning + turn resolution → returns dataclasses
 │   └── records.py       # JSON persistence (load / save)
 │
