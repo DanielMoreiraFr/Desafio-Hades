@@ -6,13 +6,13 @@ SPECIAL_COOLDOWN = 15
 class Player(Character):
     """
     The player character, controlled by the user
-    Starts with power = 30 and HP = 100
-    Gains power throuh boons and loses HP when taking damage
-    unlocks a especial attack once obtain an legendary boon
+    Starts with power = 30 and HP = 150
+    Gains power through boons and loses HP when taking damage
+    unlocks a special attack once obtaining a legendary boon
     """
 
     def __init__(self, nickname: str) -> None:
-        super().__init__(nickname, power=30, hp=100)
+        super().__init__(nickname, power=30, hp=150)
         self.boons = []
         self.has_legendary = False
         self.cooldown = SPECIAL_COOLDOWN
@@ -26,7 +26,7 @@ class Player(Character):
         """
         return randint(1, self.power)
     
-    def dodge(self) -> bool:
+    def try_dodge(self) -> bool:
         """
         Attempts to dodge an incoming attack
         Returns True if the dodge is successful (75% chance), False otherwise

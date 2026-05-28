@@ -11,7 +11,7 @@ class AttackResult:
 
 @dataclass
 class DodgeResult:
-    sucess: bool
+    success: bool
     damage_taken: int
 
 
@@ -31,7 +31,7 @@ class SpecialResult:
 
 def spawn_enemies(room: int) -> list[Enemy]:
     """
-    Normal rooms: spawns 2-5 enemies, enemy power scales with room number ( power = room * 10)
+    Normal rooms: spawns 1-4 enemies, enemy power scales with room number ( power = room * 10)
 
     Boss rooms: spawns 1 boss, boss power scales with room number ( power = normal enemy * 5)
     """
@@ -39,7 +39,7 @@ def spawn_enemies(room: int) -> list[Enemy]:
 
     if room % 10 == 0: # Boss room
         return [Enemy(random.choice(BOSS_NAMES), power= base_power * 5, hp = 120 + room * 25)]
-    count = random.randint(2, 5)
+    count = random.randint(1, 4)
     hp = 25 + room * 8
     return [Enemy(random.choice(ENEMY_NAMES), base_power, hp) for _ in range(count)]
 
@@ -68,7 +68,7 @@ def enemy_attacks_dodging(player: Player, enemy: Enemy) -> DodgeResult:
 
 def enemy_attacks_blocking(player: Player, enemy: Enemy) -> BlockResult:
     raw     = enemy.attack()
-    reduced = player.apply_block(raw)
+    reduced = player.block(raw)
     player.take_damage(reduced)
     return BlockResult(raw_damage=raw, damage_taken=reduced)
  

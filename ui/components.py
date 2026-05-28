@@ -8,7 +8,8 @@ from CONFIG import RARITY_STYLE, RARITY_ICON, RARITY_POWER
 # HP BAR --------------------------------------------------
 
 def hp_bar(current: int, maximum: int, width: int = 20) -> Text:
-    """Generates a Text object representing the HP bar, with color based on the percentage of HP remaining.
+    """
+    Generates a Text object representing the HP bar, with color based on the percentage of HP remaining.
     
     Args:
         current (int): The current HP of the character.
@@ -16,22 +17,24 @@ def hp_bar(current: int, maximum: int, width: int = 20) -> Text:
         width (int, optional): The total width of the HP bar. Defaults to 20.
     
     Returns:
-        Text: A Text object representing the HP bar."""
-    
-    ratio = max(0.0), min(1.0, current / maximum) if maximum > 0 else 0.0
-    filled_length = int(width * ratio)
-    bar = "█" * filled_length + "░" * (width - filled_length)
-    if ratio > 0.5:
-        color = 'green'
-    elif ratio > 0.25:
-        color = 'yellow'
-    else:
-        color = 'bold red'
+        Text: A Text object representing the HP bar.
+    """
 
-    text = Text()
-    text.append(f'[{bar}]', style=color)
-    text.append(f'{current}/{maximum}', style= 'dim')
-    return text
+    if maximum > 0:
+        ratio = current / maximum
+    else:
+        ratio = 0.0
+
+    ratio = 0.0 if ratio < 0.0 else (1.0 if ratio > 1.0 else ratio)
+
+    filled = int(ratio * width)
+    bar    = "█" * filled + "░" * (width - filled)
+    color  = "green" if ratio > 0.5 else "yellow" if ratio > 0.25 else "bold red"
+
+    t = Text()
+    t.append(f"[{bar}] ", style=color)
+    t.append(f"{current}/{maximum}", style="dim")
+    return t
 
 #  combat situation panel -----------
 
@@ -109,7 +112,7 @@ def boon_as_text(boon: "Boon") -> Text:  # type: ignore[name-defined]
     t.append(f"[{boon.rarity}] ", style=style)
     t.append(boon.name, style=f"bold {style}")
     t.append(f"  ·  {boon.god}", style="cyan")
-    t.append(f"  ·  +{boon.power_bonus} POWER", style="green")
+    t.append(f"  ·  +{boon.power} POWER", style="green")
     return t
  
  
@@ -130,7 +133,7 @@ def boon_choice_table(boons: list["Boon"]) -> Table:  # type: ignore[name-define
             Text(f"{RARITY_ICON[boon.rarity]} {boon.rarity}", style=style),
             Text(boon.name, style=f"bold {style}"),
             boon.god,
-            f"+{boon.power_bonus} PWR",
+            f"+{boon.power} PWR",
         )
     table.add_row("4", "", "[dim]Decline all[/dim]", "", "")
     return table
