@@ -44,7 +44,7 @@ RARITY_POWER = {
     "Legendary": 100,
 }
 
-RARITY_COLOR = {
+RARITY_STYLE = {
     "Common":          "white", 
     "Rare":        "bold blue", 
     "Epic":     "bold magenta", 
