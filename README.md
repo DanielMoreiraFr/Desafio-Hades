@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="cover.svg" alt="Hades -1 cover" width="680"/>
+</p>
+
 # Hades -1
 
 > A terminal roguelite inspired by Supergiant Games' *Hades*, built in Python with a rich terminal interface.
